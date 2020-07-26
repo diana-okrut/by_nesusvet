@@ -1,3 +1,6 @@
+import math
+
+
 def stars(text):
     """
     >>> stars('2 3')
@@ -8,8 +11,8 @@ def stars(text):
     >
     """
     char = text.split()
-    a = int(char[0]) ** int(char[1])
-    b = int(char[1]) ** int(char[0])
+    a = math.log2(int(char[0])) * int(char[1])
+    b = math.log2(int(char[1])) * int(char[0])
     if a > b:
         print('>')
     elif a < b:
