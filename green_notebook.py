@@ -20,3 +20,8 @@ def green_notebook(parameters):
     list_with_character = sorted(list_with_character)
 
     return list_with_character[k-1]
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
