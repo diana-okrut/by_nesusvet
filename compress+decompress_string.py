@@ -1,7 +1,12 @@
+"""
+$ python -m doctest compress+decompress_string.py -v
+"""
+
 def compress_string(text):
     """
     Write a function which will "compress" input string.
     Instead of repeating a char there should be just number of repetitions.
+
     >>> compress_string('aaabbbbcddd')
     'a3b4cd3'
     >>> compress_string('abcdefgh')
@@ -16,28 +21,23 @@ def compress_string(text):
     if not text:
         return text
 
-    letter = text[0]
-    counter = 0
-    answer = ''
-    buffer = []
-
-    for i in text:
-        if letter == i:
+    prev, counter = text[0], 1
+    answer = []
+    for char in text[1:]:
+        if prev == char:
             counter += 1
-            buffer = [letter, f'{counter}']
-        else:
-            if buffer[1] == '1':
-                answer += ''.join(buffer[0])
-            else:
-                answer += ''.join(buffer)
-            counter = 1
-            buffer = [i, f'{counter}']
-            letter = i
-    if buffer[1] == '1':
-        answer += ''.join(buffer[0])
-    else:
-        answer += ''.join(buffer)
-    return answer
+            continue
+
+        answer.append(prev + ('' if counter == 1 else str(counter)))
+        prev, counter = char, 1
+
+    answer.append(prev + ('' if counter == 1 else str(counter)))
+    # if counter == 1:
+    #     answer.append(prev)
+    # else:
+    #     answer.append(prev + str(counter))
+
+    return ''.join(answer)
 
 
 def decompress_string(text):
@@ -57,29 +57,16 @@ def decompress_string(text):
     if not text:
         return text
 
+    prev, counter = text[0], ''
     answer = ''
-    letter = text[0]
-    quantity = ''
-    buffer = [letter, quantity]
 
-    for i in text:
-        if i == letter:
-            buffer[0] = i
-        elif i.isdigit():
-            quantity += i
-            buffer[1] = quantity
-        else:
-            if len(buffer[1]) >= 1:
-                answer += buffer[0] * int(buffer[1])
-            else:
-                answer += buffer[0]
-            letter = i
-            quantity = ''
-            buffer = [letter, quantity]
-    if len(buffer[1]) >= 1:
-        answer += buffer[0] * int(buffer[1])
-    else:
-        answer += buffer[0]
+    for char in text[1:]:
+        if char.isdigit():
+            counter += char
+            continue
+        answer += prev * (int(counter) if len(counter) >= 1 else 1)
+        prev, counter = char, ''
+    answer += prev * (int(counter) if len(counter) >= 1 else 1)
     return answer
 
 

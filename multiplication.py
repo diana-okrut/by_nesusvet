@@ -1,17 +1,32 @@
 def main(numbers):
-    answer = []
-    multiplication = 1
-    for i in numbers:
-        if i != 0:
-            multiplication *= i
-    if numbers.count(0) > 1:
-        answer = [0] * len(numbers)
-    elif numbers.count(0) == 1:
-        mem = numbers.index(0)
-        answer = [0] * len(numbers)
-        answer[mem] = multiplication
-    else:
-        for i in numbers:
-            answer.append(int(multiplication / i))
+    """
+    >>> main([1, 2, 0, 0])
+    [0, 0, 0, 0]
+    >>> main([1, 0, 2])
+    [0, 2, 0]
+    >>> main([1, 2, 3])
+    [6, 3, 2]
+    >>> main([])
+    []
+    """
+    zero_count = numbers.count(0)  # O(n)
+    if zero_count > 1:
+        return [0] * len(numbers)
 
-    return answer
+    total = 1
+    for i in numbers:  # O(n)
+        if i != 0:
+            total *= i  # O(1)
+
+    if zero_count == 1:
+        mem = numbers.index(0)  # O(n)
+        answer = [0] * len(numbers)
+        answer[mem] = total
+        return answer
+
+    return [total // n for n in numbers]  # O(n)
+
+    # answer = []
+    # for i in numbers:
+    #     answer.append(int(total / i))
+    # return answer
