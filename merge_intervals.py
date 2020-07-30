@@ -14,7 +14,6 @@ def merge(intervals):
     for el in intervals[1:]:
         if comp[1] >= el[0]:
             comp[1] = el[1]
-            del el
             new.append(comp)
         else:
             new.append(el)
