@@ -1,3 +1,24 @@
+def doublets(doublet):
+    """
+    >>> doublets([[1, 2], [3, 4]])
+    [[1, 2], [3, 4]]
+    >>> doublets([[1, 2], [2, 4]])
+    [[1, 4]]
+    >>> doublets([[1, 10], [2, 4]])
+    [[1, 10]]
+    >>> doublets([[0, 4], [0, 4]])
+    [[0, 4]]
+    """
+    a = doublet[0]
+    b = doublet[1]
+    if a[1] < b[0]:
+        return doublet
+    elif b[1] > a[1] >= b[0]:
+        return [[a[0], b[1]]]
+    else:
+        return [a]
+
+
 def merge(intervals):
     """
     >>> merge([[1, 3], [2, 6], [8, 10], [15, 18]])
@@ -26,16 +47,16 @@ def merge(intervals):
     intervals.sort()
     new = []
     comp = intervals[0]
+
     for el in intervals[1:]:
-        if el[1] >= comp[1] >= el[0]:
-            comp[1] = el[1]
-            new.append(comp)
-        elif el[1] <= comp[1] >= el[0]:
-            continue
-        else:
-            new.append(el)
+        doublet = doublets([comp, el])
+        if len(doublet) == 2:
+            new += doublet
             comp = el
-    return new
+        else:
+            new += doublet
+            comp = el
+        return new
 
 
 if __name__ == '__main__':
