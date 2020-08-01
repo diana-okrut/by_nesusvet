@@ -1,22 +1,22 @@
-def doublets(doublet):
+def merge_two(a, b):
     """
-    >>> doublets([[1, 2], [3, 4]])
+    >>> merge_two([1, 2], [3, 4])
     [[1, 2], [3, 4]]
-    >>> doublets([[1, 2], [2, 4]])
+    >>> merge_two([1, 2], [2, 4])
     [[1, 4]]
-    >>> doublets([[1, 10], [2, 4]])
+    >>> merge_two([1, 3], [2, 4])
+    [[1, 4]]
+    >>> merge_two([1, 10], [2, 4])
     [[1, 10]]
-    >>> doublets([[0, 4], [0, 4]])
+    >>> merge_two([0, 4], [0, 4])
     [[0, 4]]
     """
-    a = doublet[0]
-    b = doublet[1]
-    if a[1] < b[0]:
-        return doublet
-    elif b[1] > a[1] >= b[0]:
-        return [[a[0], b[1]]]
-    else:
-        return [a]
+    a_start, a_end = a
+    b_start, b_end = b
+    if a_end < b_start:
+        return [a, b]
+    elif a_end >= b_start:
+        return [[a_start, max(a_end, b_end)]]
 
 
 def merge(intervals):
@@ -44,19 +44,20 @@ def merge(intervals):
     if len(intervals) == 1:
         return intervals
 
-    intervals.sort()
-    new = []
-    comp = intervals[0]
+    intervals = sorted(intervals)
 
-    for el in intervals[1:]:
-        doublet = doublets([comp, el])
-        if len(doublet) == 2:
-            new += doublet
-            comp = el
+    current = intervals[0]
+
+    result = []
+    for interval in intervals[1:]:
+        merge_result = merge_two(current, interval)
+        if len(merge_result) > 1:
+            result.append(current)
+            current = interval
         else:
-            new += doublet
-            comp = el
-        return new
+            current = merge_result[0]
+    result.append(current)
+    return result
 
 
 if __name__ == '__main__':
