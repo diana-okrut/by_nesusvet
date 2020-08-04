@@ -1,5 +1,6 @@
 def main(numbers):
     """
+    https://leetcode.com/problems/single-element-in-a-sorted-array/
     >>> main([])
     >>> main([1])
     1

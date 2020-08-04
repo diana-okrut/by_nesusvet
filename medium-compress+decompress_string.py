@@ -1,5 +1,5 @@
 """
-$ python -m doctest compress+decompress_string.py -v
+$ python -m doctest medium-compress+decompress_string.py -v
 """
 
 def compress_string(text):

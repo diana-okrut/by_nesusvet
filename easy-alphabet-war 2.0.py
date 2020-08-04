@@ -1,3 +1,6 @@
+"""
+https://www.codewars.com/kata/alphabet-war
+"""
 left_side = {'s': 1,
              'b': 2,
              'p': 3,

@@ -1,3 +1,6 @@
+"""
+https://www.codewars.com/kata/love-vs-friendship/train/python
+"""
 import string
 
 

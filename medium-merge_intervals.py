@@ -1,5 +1,6 @@
 def merge_two(a, b):
     """
+    https://leetcode.com/problems/merge-intervals/
     >>> merge_two([1, 2], [3, 4])
     [[1, 2], [3, 4]]
     >>> merge_two([1, 2], [2, 4])

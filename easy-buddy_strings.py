@@ -1,5 +1,7 @@
 def main(A: str, B: str) -> bool:
     """
+    https://leetcode.com/problems/buddy-strings
+
     >>> main("abcdea", "acbeda")
     False
     >>> main("ab", "ab")
