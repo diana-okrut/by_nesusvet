@@ -9,4 +9,3 @@ def motivation_letter(mistake_word, true_word):
     1
     2
     """
-    

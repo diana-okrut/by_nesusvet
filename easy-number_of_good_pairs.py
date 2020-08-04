@@ -15,7 +15,6 @@ def num_identical_pairs(nums):
     for i in nums:
 
 
-
 if __name__ == '__main__':
     import doctest
 

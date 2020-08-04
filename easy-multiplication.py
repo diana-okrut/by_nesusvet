@@ -29,8 +29,3 @@ def main(numbers):
         return answer
 
     return [total // n for n in numbers]  # O(n)
-
-    # answer = []
-    # for i in numbers:
-    #     answer.append(int(total / i))
-    # return answer

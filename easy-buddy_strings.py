@@ -42,8 +42,6 @@ def main(A: str, B: str) -> bool:
     return True if len(different_letter_A) == 2 and different_letter_A == different_letter_B[::-1] else False
 
 
-
-
 if __name__ == '__main__':
     import doctest
     doctest.testmod()

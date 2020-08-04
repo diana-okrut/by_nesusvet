@@ -32,11 +32,6 @@ def compress_string(text):
         prev, counter = char, 1
 
     answer.append(prev + ('' if counter == 1 else str(counter)))
-    # if counter == 1:
-    #     answer.append(prev)
-    # else:
-    #     answer.append(prev + str(counter))
-
     return ''.join(answer)
 
 
