@@ -9,13 +9,7 @@ def kids_with_candies(candies, extra_candies):
     [True, False, True]
     """
     maximum = max(candies)
-    answer = []
-    for kid in candies:
-        if kid + extra_candies >= maximum:
-            answer.append(True)
-        else:
-            answer.append(False)
-    return answer
+    return [kid + extra_candies >= maximum for kid in candies]
 
 
 if __name__ == '__main__':
