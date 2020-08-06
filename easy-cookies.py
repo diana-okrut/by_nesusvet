@@ -25,17 +25,23 @@ def find_content_children(g, s):
         for item in g:
             return 1 if s[0] >= item else 0
 
-    g = sorted(g)
-    s = sorted(s)
-    result = 0
-    if len(g) == len(s):
-        for item_g, item_s in zip(g, s):
-            if item_g <= item_s:
-                result += 1
-        return result
+    if len(g) >= len(s):
+        g = sorted(g)
+        s = sorted(s)
 
-    # if len(g) > len(s):
-    #     return result
-    #
-    # if len(s) > len(g):
-    #     return result
+    if len(s) > len(g):
+        g = sorted(g, reverse=True)
+        s = sorted(s, reverse=True)
+
+    result = 0
+    for item_g, item_s in zip(g, s):
+        if item_g <= item_s:
+            result += 1
+
+    return result
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
