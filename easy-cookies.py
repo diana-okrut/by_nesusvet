@@ -25,19 +25,24 @@ def find_content_children(g, s):
         for item in g:
             return 1 if s[0] >= item else 0
 
-    if len(g) >= len(s):
-        g = sorted(g)
-        s = sorted(s)
-
-    if len(s) > len(g):
-        g = sorted(g, reverse=True)
-        s = sorted(s, reverse=True)
-
+    g = sorted(g)
+    s = sorted(s)
     result = 0
-    for item_g, item_s in zip(g, s):
-        if item_g <= item_s:
-            result += 1
-
+    index = 0
+    if len(g) < len(s):
+        item_g = g[index]
+        while index <= len(g) - 1:
+            for item_s in s:
+                if item_g <= item_s:
+                    result += 1
+                    index += 1
+    if len(g) >= len(s):
+        item_s = s[index]
+        while index <= len(s) - 1:
+            for item_g in g:
+                if item_g <= item_s:
+                    result += 1
+                    index += 1
     return result
 
 
