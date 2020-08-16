@@ -17,9 +17,7 @@ def main(monsters):
         monster -= damage
         if monster > 0:
             result += monster
-            damage = dam
-        else:
-            damage = dam
+        damage = dam
 
     return result
 
