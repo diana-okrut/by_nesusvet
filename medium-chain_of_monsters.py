@@ -9,13 +9,11 @@ def main(monsters):
     """
 
     start_index = monsters.index(min(monsters))
-
-    for item in monsters[:start_index]:
-        monsters.append(monsters.pop(monsters.index(item)))
+    new_monsters_list = monsters[start_index::] + monsters[:start_index]
 
     result = 0
     damage = 0
-    for monster, dam in monsters:
+    for monster, dam in new_monsters_list:
         monster -= damage
         while monster > 0:
             monster -= 1
