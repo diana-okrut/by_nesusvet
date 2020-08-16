@@ -28,21 +28,18 @@ def find_content_children(g, s):
     g = sorted(g)
     s = sorted(s)
     result = 0
-    index = 0
-    if len(g) < len(s):
-        item_g = g[index]
-        while index <= len(g) - 1:
-            for item_s in s:
-                if item_g <= item_s:
-                    result += 1
-                    index += 1
-    if len(g) >= len(s):
-        item_s = s[index]
-        while index <= len(s) - 1:
-            for item_g in g:
-                if item_g <= item_s:
-                    result += 1
-                    index += 1
+    g_index = 0
+    s_index = 0
+    while g_index < len(g) and s_index < len(s):
+        cookie = s[s_index]
+        greed = g[g_index]
+        if cookie < greed:
+            s_index += 1
+        else:
+            result += 1
+            s_index += 1
+            g_index += 1
+
     return result
 
 
