@@ -21,10 +21,6 @@ def find_content_children(g, s):
     if not s or not g:
         return 0
 
-    if len(s) == 1:
-        for item in g:
-            return 1 if s[0] >= item else 0
-
     g = sorted(g)
     s = sorted(s)
     result = 0
