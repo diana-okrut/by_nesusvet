@@ -15,9 +15,9 @@ def main(monsters):
     damage = 0
     for monster, dam in new_monsters_list:
         monster -= damage
-        while monster > 0:
-            monster -= 1
-            result += 1
+        if monster > 0:
+            result += monster
+            damage = dam
         else:
             damage = dam
 
