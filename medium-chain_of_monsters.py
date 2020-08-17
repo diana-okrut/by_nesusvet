@@ -36,8 +36,7 @@ def main_2(monsters):
     alive_monsters = []
 
     for monster, dam in new_monsters_list:
-        monster -= damage
-        alive_monsters.append(monster)
+        alive_monsters.append(monster - damage)
         damage = dam
 
     return sum([mon for mon in alive_monsters if mon > 0])
