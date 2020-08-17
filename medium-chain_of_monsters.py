@@ -40,9 +40,7 @@ def main_2(monsters):
         alive_monsters.append(monster)
         damage = dam
 
-    result = [mon for mon in alive_monsters if mon > 0]
-
-    return sum(result)
+    return sum([mon for mon in alive_monsters if mon > 0])
 
 
 if __name__ == '__main__':
