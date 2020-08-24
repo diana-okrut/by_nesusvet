@@ -39,3 +39,9 @@ def sort_letters(text):
     for freq, _, letter in pairs:
         result.append(letter * freq)
     return ''.join(result)
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
