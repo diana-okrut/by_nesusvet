@@ -34,8 +34,7 @@ def is_balanced(text):
     if not bracket_in_text:
         return True
 
-    bracket = bracket_in_text[0]
-    if bracket == ')':
+    if bracket_in_text[0] == ')':
         return False
 
     if len(bracket_in_text) % 2 != 0:
@@ -45,8 +44,19 @@ def is_balanced(text):
     if counter['('] != counter[')']:
         return False
 
-    # for br in bracket_in_text[1:]:
-    #     if br == bracket:
+    while bracket_in_text:
+        if bracket_in_text[0] == bracket_in_text[1] and \
+                bracket_in_text[0] != bracket_in_text[-1]:
+            del bracket_in_text[0]
+            del bracket_in_text[-1]
+        elif bracket_in_text[0] == bracket_in_text[1] and \
+                bracket_in_text[0] == bracket_in_text[-1]:
+            return False
+        elif bracket_in_text[0] != bracket_in_text[1]:
+            del bracket_in_text[0]
+            del bracket_in_text[1]
+
+    return not bracket_in_text
 
 
 if __name__ == '__main__':
