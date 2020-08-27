@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 def is_balanced(text):
     """
     See https://www.codewars.com/kata/all-that-is-open-must-be-closed-dot-dot-dot
