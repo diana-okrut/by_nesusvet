@@ -28,27 +28,19 @@ def is_balanced(text):
     bracket_in_text = [
         symbol
         for symbol in text
-        if symbol in ['(', ')']
+        if symbol in {'(', ')'}
     ]
 
     if not bracket_in_text:
         return True
-
-    if bracket_in_text[0] == ')':
-        return False
-
-    if len(bracket_in_text) % 2 != 0:
-        return False
-
-    counter = Counter(bracket_in_text)
-    if counter['('] != counter[')']:
-        return False
 
     stack = []
     for el in bracket_in_text:
         if el == '(':
             stack.append(el)
         else:
+            if not stack:
+                return False
             stack.pop(-1)
 
     return not stack
