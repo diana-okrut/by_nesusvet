@@ -40,14 +40,18 @@ def is_balanced(text):
     if len(bracket_in_text) % 2 != 0:
         return False
 
-    result = []
+    counter = Counter(bracket_in_text)
+    if counter['('] != counter[')']:
+        return False
+
+    stack = []
     for el in bracket_in_text:
         if el == '(':
-            result.append(el)
+            stack.append(el)
         else:
-            del result[-1]
+            stack.pop(-1)
 
-    return not result
+    return not stack
 
 
 if __name__ == '__main__':
