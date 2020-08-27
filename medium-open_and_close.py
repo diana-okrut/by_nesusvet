@@ -38,7 +38,7 @@ def is_balanced(text):
         else:
             if not stack:
                 return False
-            stack.pop(-1)
+            stack.pop()
 
     return not stack
 
