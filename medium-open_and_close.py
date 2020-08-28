@@ -1,4 +1,4 @@
-def is_balanced(text):
+def is_balanced(text, bracket):
     """
     See https://www.codewars.com/kata/all-that-is-open-must-be-closed-dot-dot-dot
 
@@ -25,7 +25,7 @@ def is_balanced(text):
     bracket_in_text = [
         symbol
         for symbol in text
-        if symbol in {'(', ')'}
+        if symbol in set(bracket)
     ]
 
     if not bracket_in_text:
