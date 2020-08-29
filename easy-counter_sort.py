@@ -13,8 +13,7 @@ def counter_sort(numbers):
     if not numbers:
         return numbers
 
-    counter = [0] * (abs(min(numbers))+abs(max(numbers))+1)
-    counter = dict(enumerate(counter, start=min(numbers)))
+    counter = dict.fromkeys(range(min(numbers), max(numbers) + 1), 0)
 
     for el in numbers:
         counter[el] += 1
