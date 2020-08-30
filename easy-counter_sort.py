@@ -24,3 +24,9 @@ def counter_sort(numbers):
         if value > 0:
             result += [key] * value
     return result
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
