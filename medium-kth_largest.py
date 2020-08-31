@@ -17,18 +17,12 @@ def kth_largest(numbers, k):
     if not numbers:
         return 0
 
-    counter = dict.fromkeys(range(max(numbers), min(numbers) - 1, -1), 0)
-
-    for el in numbers:
-        counter[el] += 1
-
-    result = []
-
-    for key, value in counter.items():
-        if value > 0:
-            result += [key] * value
-        if len(result) >= k:
-            return result[k - 1]
+    copy_numbers = numbers.copy()
+    while k > 1:
+        el = max(copy_numbers)
+        copy_numbers.remove(el)
+        k -= 1
+    return max(copy_numbers)
 
 
 if __name__ == '__main__':
