@@ -1,3 +1,6 @@
+import heapq
+
+
 def kth_largest(numbers, k):
     """
     See https://leetcode.com/problems/kth-largest-element-in-an-array/
@@ -17,12 +20,12 @@ def kth_largest(numbers, k):
     if not numbers:
         return 0
 
-    copy_numbers = numbers.copy()
-    while k > 1:
-        el = max(copy_numbers)
-        copy_numbers.remove(el)
-        k -= 1
-    return max(copy_numbers)
+    result = []
+    for value in numbers:
+        heapq.heappush(result, value)
+    a = [heapq.heappop(result) for i in range(len(result))]
+
+    return a[-k]
 
 
 if __name__ == '__main__':
