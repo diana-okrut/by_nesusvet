@@ -24,10 +24,10 @@ def kth_largest(numbers, k):
     for value in numbers:
         if len(result) != k:
             heapq.heappush(result, value)
-        elif min(result) < value:
+        elif result[0] < value:
             heapq.heappushpop(result, value)
 
-    return min(result)
+    return result[0]
 
 
 if __name__ == '__main__':
