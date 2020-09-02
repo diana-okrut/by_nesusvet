@@ -22,10 +22,12 @@ def kth_largest(numbers, k):
 
     result = []
     for value in numbers:
-        heapq.heappush(result, value)
-    a = [heapq.heappop(result) for i in range(len(result))]
+        if len(result) != k:
+            heapq.heappush(result, value)
+        elif min(result) < value:
+            heapq.heappushpop(result, value)
 
-    return a[-k]
+    return min(result)
 
 
 if __name__ == '__main__':
