@@ -13,6 +13,7 @@ def main(text: str) -> bool:
     """
 
     counting_by_letters = {}
+
     for i in text:
         counting_by_letters.setdefault(i, 0)
         counting_by_letters[i] += 1
@@ -20,4 +21,24 @@ def main(text: str) -> bool:
     for j in counting_by_letters.values():
         if j % 2 != 0:
             counter += 1
-    return False if counter > 1 else True
+        if counter > 1:
+            return False
+    result = []
+    len_new_result = 0
+    for key, value in counting_by_letters.items():
+        len_new_result += value
+        if value % 2 == 0:
+            new_key = key * (value // 2)
+            result.append(new_key)
+            result.insert(0, new_key)
+        elif (value % 2 != 0) and (value // 2 == 0):
+            center = len(result) // 2
+            result = result[0:center] + [key] + result[center::]
+        elif (value % 2 != 0) and (value // 2 != 0):
+            new_key = key * (value // 2)
+            result.append(new_key)
+            result.insert(0, new_key)
+            center = len(result) // 2
+            result = result[0:center] + [key] + result[center::]
+    text_result = "".join(result)
+    return text_result
